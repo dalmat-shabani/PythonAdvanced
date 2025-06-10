@@ -1,11 +1,17 @@
-from ssl import HAS_NEVER_CHECK_COMMON_NAME
-
 Jane = {
-    "Jane" , "555-5555", "jane@gmail.com"
+    "name": "Jane",
+    "phone": "555-5555",
+    "email": "jane@gmail.com"
 }
+
 John = {
-    "John" , "444-4444", "john@gmail.com"
+    "name": "John",
+    "phone": "444-4444",
+    "email": "john@gmail.com"
 }
+
 print(Jane)
 print(John)
 
+Jane["phone"] = "333-3333"
+print(Jane)
