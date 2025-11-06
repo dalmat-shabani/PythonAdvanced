@@ -35,6 +35,53 @@ if submit_button:
     books_df = pd.concat([pd.DataFrame([new_data]), books_df], ignore_index=True)
     books_df.to_csv('bestsellers_with_categories_2022_03_27.csv')
     st.sidebar.success('New books added successfully')
+
+
+
+
+#sidebar filters
+st.sidebar.header("Filter Options")
+selected_author = st.sidebar.selectbox("Select Author", ["All"] + list(books_df['Author'].unique()))
+selected_year = st.sidebar.selectbox("Select Year", ["All"] + list(books_df['Year'].unique()))
+selected_genre = st.sidebar.selectbox("Select Genre", ["All"] + list(books_df['Genre'].unique()))
+min_rating = st.sidebar.slider("Minimum Rating", 0.0, 5.0, 0.0, 0.1)
+max_price = st.sidebar.number_input(
+    "Maximum Price",
+    min_value=float(0),
+    max_value=float(books_df['Price'].max()),
+    value=float(books_df['Price'].max())
+)
+
+
+
+
+
+
+#filter the dataset
+filtered_books_df = books_df.copy()
+if selected_author != "All":
+    filtered_books_df = filtered_books_df[filtered_books_df['Author'] == selected_author]
+if selected_year != "All":
+    filtered_books_df = filtered_books_df[filtered_books_df['Year'] == selected_year]
+if selected_genre != "All":
+    filtered_books_df = filtered_books_df[filtered_books_df['Genre'] == selected_genre]
+
+filtered_books_df = filtered_books_df[
+    (filtered_books_df['User Rating'] >= min_rating) & (filtered_books_df['Price'] <= max_price)
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Summary Statistics
 st.subheader("Summary Statistics")
 total_books = books_df.shape[0]
