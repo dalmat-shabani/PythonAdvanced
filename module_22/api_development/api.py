@@ -9,6 +9,20 @@ class User(BaseModel):
     age: int
     email: str
 
+class Person(BaseModel):
+     name: str
+     age: int
+
+
+class PersonaResponse(BaseModel):
+    message: str
+
+
 @app.post("/users")
 async def create_user(user: User):
     return user
+
+
+@app.post("/create_person")
+async def create_person(person: Person):
+    return{"message": f"Person {person.name} created with age {person.age}"}
