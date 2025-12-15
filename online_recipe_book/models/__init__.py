@@ -1,2 +1,2 @@
-from .category import CategoryBase, CategoryCreate, CategoryResponse
-from .recipe import RecipeBase, RecipeCreate, RecipreResponse
+from .category import CategoryCreate, CategoryResponse
+from .recipe import RecipeCreate, RecipeResponse
