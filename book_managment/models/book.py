@@ -1,8 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional, List
 
-from book_managment.__innit__ import Author
-
 
 class BookBase(BaseModel):
     title: str
